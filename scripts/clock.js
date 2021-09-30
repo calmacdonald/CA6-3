@@ -72,7 +72,7 @@ class Clock extends React.Component {
     render() {
       return (
         <div>
-          <h1>Hello React Students!</h1>
+          <h1>Hello CptS 489 Students!</h1>
           {this.state.displayDate ?
             <h2>The date is <FormattedDate date={this.state.date} />.</h2>
             : null}
@@ -83,7 +83,8 @@ class Clock extends React.Component {
         </div>
       );
     }
-  }
+
+}
 
 
 ReactDOM.render(
