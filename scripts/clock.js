@@ -1,19 +1,9 @@
 class FormattedTime extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {date: props.date};
   }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.date != prevState.date) {
-      return {date: nextProps.date};
-    }  else {
-      return null;
-    }
-  }
-
   render() {
-    return this.state.date.toLocaleTimeString();
+    return this.props.date.toLocaleTimeString();
   }
 }
 
