@@ -23,7 +23,6 @@ class WeatherStation extends React.Component {
         this.getCurrentObservations();
     }
 
-    
     toggleUnits = () => {
         if (this.state.tempUnit == "F") {
             this.setState({tempUnit: "C", temp: Math.round((this.state.temp - 32) * 5/9)});
@@ -31,7 +30,6 @@ class WeatherStation extends React.Component {
             this.setState({tempUnit: "F", temp: Math.round((this.state.temp * 9/5) + 32)});
         }
     }
-  
 
     getCurrentObservations = async() => {
         const response = await fetch('http://api.openweathermap.org/data/2.5/weather?lat=' +               
@@ -54,7 +52,6 @@ class WeatherStation extends React.Component {
             windDirectionUnit: "Degrees"
         });
     }
-
 
    render() {
         return (
@@ -80,8 +77,3 @@ class WeatherStation extends React.Component {
     }
 
 }
-
-ReactDOM.render(
-    <WeatherStation latitude="47.61" longitude="-122.33"/>,
-    document.getElementById('root')
-);
