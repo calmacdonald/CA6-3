@@ -26,6 +26,9 @@ class WeatherObs extends React.Component {
            return (<main>
                     <WeatherStation latitude={this.state.station.lat} 
                                     longitude={this.state.station.long} />
+                    <button className="float" id="addStationBtn" onClick={this.addStation}>
+                        <span className="float-btn-icon fa fa-plus" id="floatBtnIcon"></span>
+                    </button>
                   </main> );
         } else {
             return null;
