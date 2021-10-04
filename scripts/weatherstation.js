@@ -66,11 +66,10 @@ class WeatherStation extends React.Component {
                 <p>Wind Direction: {this.state.windDirection + " " + 
                     this.state.windDirectionUnit}</p>
             <div className="custom-control custom-switch">
-                <input type="checkbox" 
-                    className="custom-control-input" 
-                    id="customSwitches" onClick={this.toggleUnits} />
-                    <label className="custom-control-label" 
-                        htmlFor="customSwitches">&nbsp;&deg;units</label>
+                <input type="checkbox" className="custom-control-input" 
+                       id={"switch-" + this.props.stationId} onClick={this.toggleUnits} />
+                <label className="custom-control-label" 
+                    htmlFor={"switch-" + this.props.stationId}>&nbsp;&deg;{this.state.tempUnit}</label>
             </div>
         </section>
         );
