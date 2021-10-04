@@ -2,19 +2,24 @@ class WeatherObs extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {station: null};
+        this.state = {stations: [],
+                      stationCount: 0};
       }
 
-    getLocSuccess = (position) =>  {
-        //Set geolocatio to user's current position
-        this.setState({station: {lat: position.coords.latitude, 
-                        long: position.coords.longitude}});
+      getLocSuccess = (position) =>  {
+        this.setState({stations: [{lat: position.coords.latitude, 
+                                   lon: position.coords.longitude, 
+                                   stationId: this.state.stationCount+1}],
+                                   stationCount: this.state.stationCount + 1});
     }
-
+    
     getLocError = (err) => {
-        //Set geolocation to Seattle if user refuses to share loc
-        this.setState({station: {lat: 47.61, long: -122.33}});
+        this.setState({stations: [{lat: 47.61, 
+                                   lon: -122.33, 
+                                   stationId: this.state.stationCount+1}],
+                                   stationCount: this.state.stationCount + 1});
     }
+    
 
     addStation = async() => {
         const newStation = prompt("Enter a City, State, and Country:");
@@ -24,7 +29,13 @@ class WeatherObs extends React.Component {
           const stationData = await response.json();
           //See if the requested station exists
           if (stationData != null && stationData.hasOwnProperty('coord')) { 
-              //TO DO: Add station to list
+            //Push new station into stations list and update state
+            let newStations = [...this.state.stations];
+            newStations.push({lat: stationData.coord.lat, 
+                    lon: stationData.coord.lon, 
+                    stationId: this.state.stationCount + 1});
+            this.setState({stations: newStations,
+                stationCount: this.state.stationCount + 1});
           } else { 
               alert("Sorry, that weather location could not be found.");
           }
@@ -37,10 +48,18 @@ class WeatherObs extends React.Component {
     }
 
     render() {
-        if (this.state.station != null) {
+        if (this.state.stations.length != 0) {
+            let rows = [];
+            for (let i = 0; i < this.state.stations.length; ++i) {
+                rows.push(<WeatherStation key={this.state.stations[i].stationId} 
+                  latitude={this.state.stations[i].lat} 
+                  longitude={this.state.stations[i].lon}
+                  stationId={this.state.stations[i].stationId} />);
+            }
            return (<main>
-                    <WeatherStation latitude={this.state.station.lat} 
-                                    longitude={this.state.station.long} />
+                    <div id="weatherStations">
+                        {rows}
+                    </div>
                     <button className="float" id="addStationBtn" onClick={this.addStation}>
                         <span className="float-btn-icon fa fa-plus" id="floatBtnIcon"></span>
                     </button>
