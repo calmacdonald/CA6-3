@@ -55,24 +55,24 @@ class WeatherStation extends React.Component {
 
    render() {
         return (
-        <div>
-            <h2>Weather Conditions at {this.state.place}</h2>
-                <h6><i>Last updated: {this.state.retrieved}</i></h6>
-                <h5>Conditions: {this.state.conditions}</h5>
-                <h5>Visibility: {this.state.visibility + " " + this.state.visibilityUnit}</h5>
-                <h5>Temp: {this.state.temp}&deg;&nbsp;{this.state.tempUnit}</h5>
-                <h5>Humidity: {this.state.humidity}%</h5>
-                <h5>Wind Speed: {this.state.wind + " " + this.state.windUnit}</h5>
-                <h5>Wind Direction: {this.state.windDirection + " " + 
-                    this.state.windDirectionUnit}</h5>
+        <section className="jumbotron ws-centered ws-padding">
+            <h1>Weather Conditions at {this.state.place}</h1>
+                <p><i>Last updated: {this.state.retrieved}</i></p>
+                <p>Conditions: {this.state.conditions}</p>
+                <p>Visibility: {this.state.visibility + " " + this.state.visibilityUnit}</p>
+                <p>Temp: {this.state.temp}&deg;&nbsp;{this.state.tempUnit}</p>
+                <p>Humidity: {this.state.humidity}%</p>
+                <p>Wind Speed: {this.state.wind + " " + this.state.windUnit}</p>
+                <p>Wind Direction: {this.state.windDirection + " " + 
+                    this.state.windDirectionUnit}</p>
             <div className="custom-control custom-switch">
                 <input type="checkbox" 
-                className="custom-control-input" 
-                id="customSwitches" onClick={this.toggleUnits} />
-                <label className="custom-control-label" 
-                    htmlFor="customSwitches">&nbsp;&deg;units</label>
+                    className="custom-control-input" 
+                    id="customSwitches" onClick={this.toggleUnits} />
+                    <label className="custom-control-label" 
+                        htmlFor="customSwitches">&nbsp;&deg;units</label>
             </div>
-        </div>
+        </section>
         );
     }
 

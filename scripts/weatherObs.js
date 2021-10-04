@@ -23,12 +23,10 @@ class WeatherObs extends React.Component {
 
     render() {
         if (this.state.station != null) {
-           return (<div id="main">
-                     <div align="center" className="jumbotron">
-                       <WeatherStation latitude={this.state.station.lat} 
-                                       longitude={this.state.station.long} />
-                     </div>
-                   </div> );
+           return (<main>
+                    <WeatherStation latitude={this.state.station.lat} 
+                                    longitude={this.state.station.long} />
+                  </main> );
         } else {
             return null;
         }
