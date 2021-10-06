@@ -32,9 +32,7 @@ class WeatherStation extends React.Component {
     }
 
     getCurrentObservations = async() => {
-        const response = await fetch('http://api.openweathermap.org/data/2.5/weather?lat=' +               
-          this.state.latitude + '&lon=' +
-          this.state.longitude + '&appid=98cb8d2538da248784d8e1c1f9332ea9');
+        const response = await fetch('https://api.weather.gov/points/46,-117');
         const currWeather = await response.json();
         this.setState({place: currWeather.name,
             retrieved: (new Date()).toLocaleDateString() + " at " + 
